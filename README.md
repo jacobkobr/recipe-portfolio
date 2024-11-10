@@ -6,9 +6,8 @@ React-based app that allows users to input recipe details along with a picture w
 
 
 
-<img src="./assets/rp1.png" alt="Home Page" width="400"/>
+<img src="./assets/rp1.png" alt="Home Page" width="600"/> <img src="./assets/rp2.png" alt="Recipe Details" width="600"/>
 
-<img src="./assets/rp2.png" alt="Recipe Details" width="400"/>
 
 ## Technologies Used
 
