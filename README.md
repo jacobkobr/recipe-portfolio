@@ -2,7 +2,7 @@
 
 React-based app that allows users to input recipe details along with a picture which is locally saved for future viewing. 
 
-**Try it out!** [Recipe App on Netlify](https://recipeportfolio.netlify.app/)
+**Try it out!** [Recipe Portfolio Demo](https://recipeportfolio.netlify.app/)
 
 
 
