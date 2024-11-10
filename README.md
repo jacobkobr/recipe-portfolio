@@ -4,6 +4,11 @@ React-based app that allows users to input recipe details along with a picture w
 
 **Try it out!** [Recipe App on Netlify](https://recipeportfolio.netlify.app/)
 
+
+![Home Page](./assets/rp1.png)
+
+![Recipe Details](./assets/rp2.png)
+
 ## Technologies Used
 
 - React
