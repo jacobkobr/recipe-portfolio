@@ -34,7 +34,8 @@ const IngredientSearch: React.FC<IngredientSearchProps> = ({ onSearchResults }) 
     };
 
     return (
-        <div style={{ width: '330px', padding: '1rem', backgroundColor: '#D1D5DB', borderRadius: '8px' }}>
+        <div style={{ width: '330px', padding: '1rem', backgroundColor: '#D1D5DB', borderRadius: '8px' }}
+             className="border border-gray-500 shadow-lg">
             <h2>Find Recipes by Ingredients</h2>
             <input
                 type="text"
