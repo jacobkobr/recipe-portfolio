@@ -72,7 +72,7 @@ const App: React.FC = () => {
   return (
       <div className="min-h-screen bg-gray-500 p-8">
         <div className="container mx-auto max-w-6xl p-6 rounded-lg shadow-lg" style={{ backgroundColor: '#AAADB2' }}>
-          <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-8" >Recipe Lab</h1>
+          <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-8" >Recipe Portfolio</h1>
 
           {/* flex layout for columns */}
           <div className="flex flex-col md:flex-row gap-6">
