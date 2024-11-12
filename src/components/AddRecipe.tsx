@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
-// Type definition for a Recipe
 interface Recipe {
     title: string;
     ingredients: string;
@@ -8,19 +7,20 @@ interface Recipe {
     image: string | null;
 }
 
-// Props for AddRecipe component
+
 interface AddRecipeProps {
-    onAddRecipe: (recipe: Recipe) => void; // Callback to pass new recipe to parent
+    onAddRecipe: (recipe: Recipe) => void; // callback to pass new recipe to parent
 }
 
-// Component to add a new recipe
+// component to add a new recipe
 const AddRecipe: React.FC<AddRecipeProps> = ({ onAddRecipe }) => {
     const [title, setTitle] = useState(''); // state for recipe title
     const [ingredients, setIngredients] = useState(''); // state for ingredients list
     const [instructions, setInstructions] = useState(''); // state for instructions
     const [image, setImage] = useState<string | null>(null); // state for optional image
+    const fileInputRef = useRef<HTMLInputElement | null>(null); // ref to trigger file input
 
-    // Handles form submission for new recipe
+    // handles submission for new recipe
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault(); // prevent page reload on submit
         if (title && ingredients && instructions) { // ensure required fields are filled
@@ -32,7 +32,7 @@ const AddRecipe: React.FC<AddRecipeProps> = ({ onAddRecipe }) => {
         }
     };
 
-    // Handles image upload and sets it in state
+    // image upload and sets it in state
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]; // get selected file
         if (file) {
@@ -81,12 +81,24 @@ const AddRecipe: React.FC<AddRecipeProps> = ({ onAddRecipe }) => {
                     type="file"
                     accept="image/*"
                     onChange={handleImageUpload} // handle image upload
-                    className="mt-2"
+                    ref={fileInputRef} // ref to trigger file input
+                    style={{ display: 'none' }} // hide the default file input
                 />
+                <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()} // trigger file input dialog
+                    className="w-full py-2 mt-2 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    {image ? "Change Image" : "Upload Image"}
+                </button>
+                {image && (
+                    <p className="mt-2 text-gray-600">Image selected</p> // feedback when an image is selected
+                )}
             </div>
             <button
                 type="submit"
-                className="w-full py-2 font-semibold text-black border rounded border-gray-500 hover:bg-blue-600 transition duration-300" style={{ backgroundColor: '#ADACAC' }}
+                className="w-full py-2 font-semibold text-black border rounded border-gray-500 hover:bg-blue-600 transition duration-300"
+                style={{ backgroundColor: '#ADACAC' }}
             >
                 Add Recipe
             </button>
