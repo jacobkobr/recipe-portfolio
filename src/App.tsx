@@ -3,7 +3,6 @@ import AddRecipe from './components/AddRecipe';
 import RecipeList from './components/RecipeList';
 import RecipeDetail from './components/RecipeDetail';
 import IngredientSearch from './components/IngredientSearch';
-import axios from 'axios';
 
 // local recipe type for user-added recipes
 export interface LocalRecipe {
@@ -29,7 +28,6 @@ const App: React.FC = () => {
   const [myRecipes, setMyRecipes] = useState<LocalRecipe[]>([]); // stores user-added recipes
   const [searchedRecipes, setSearchedRecipes] = useState<ApiRecipe[]>([]); // stores spoonacular api recipes
   const [selectedRecipe, setSelectedRecipe] = useState<LocalRecipe | null>(null); // holds selected recipe for detailed view
-  const [ingredientsInput, setIngredientsInput] = useState(''); // holds user input for ingredients
   const initialLoad = useRef(true); // tracks if recipes loaded from localStorage
 
   // loads saved recipes from localStorage on first load
@@ -71,27 +69,9 @@ const App: React.FC = () => {
     setSelectedRecipe(null); // clears selected recipe
   };
 
-  // fetches recipes from spoonacular based on ingredients
-  const fetchRecipes = async () => {
-    const ingredients = ingredientsInput.split(',').map(i => i.trim()).join(','); // formats ingredients input
-    try {
-      const { data } = await axios.get<ApiRecipe[]>(`https://api.spoonacular.com/recipes/findByIngredients`, {
-        params: {
-          ingredients,
-          number: 10, // limits results to 10 recipes
-          ranking: 2, // prioritizes recipes using most ingredients
-          apiKey: process.env.REACT_APP_SPOONACULAR_API_KEY,
-        },
-      });
-      setSearchedRecipes(data); // updates state with fetched recipes
-    } catch (err) {
-      console.log("error fetching recipes:", err); // logs error
-    }
-  };
-
   return (
       <div className="min-h-screen bg-gray-500 p-8">
-        <div className="container mx-auto max-w-6xl p-6 rounded-lg shadow-lg"style={{ backgroundColor: '#AAADB2' }}>
+        <div className="container mx-auto max-w-6xl p-6 rounded-lg shadow-lg" style={{ backgroundColor: '#AAADB2' }}>
           <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-8" >Recipe Lab</h1>
 
           {/* flex layout for columns */}
