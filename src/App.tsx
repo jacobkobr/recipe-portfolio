@@ -82,7 +82,7 @@ const App: React.FC = () => {
               <h2 className="text-2xl font-bold text-gray-800 my-4 pl-14">Generate a Recipe</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                 {searchedRecipes.map(recipe => (
-                    <div key={recipe.id} className="border border-gray-300 rounded-lg p-4 shadow-lg">
+                    <div key={recipe.id} className="border border-gray-500 rounded-lg p-4 shadow-lg" >
                       <h3 className="font-semibold">{recipe.title}</h3>
                       {recipe.image && (
                           <img src={recipe.image} alt={recipe.title} className="w-full h-32 object-cover rounded mt-2" />
@@ -93,7 +93,7 @@ const App: React.FC = () => {
                           href={`https://spoonacular.com/recipes/${recipe.title}-${recipe.id}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-500 underline mt-2 block"
+                          className="text-blue-200 underline mt-2 block"
                       >
                         View Recipe
                       </a>
