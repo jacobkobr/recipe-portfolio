@@ -6,7 +6,7 @@ import IngredientSearch from './components/IngredientSearch';
 import axios from 'axios';
 
 // local recipe type for user-added recipes
-interface LocalRecipe {
+export interface LocalRecipe {
   title: string;
   ingredients: string;
   instructions: string;
@@ -14,7 +14,7 @@ interface LocalRecipe {
 }
 
 // api recipe type for recipes from spoonacular
-interface ApiRecipe {
+export interface ApiRecipe {
   id: number;
   title: string;
   image: string;
@@ -23,7 +23,7 @@ interface ApiRecipe {
 }
 
 // recipe can be either a local recipe or an api recipe
-type Recipe = LocalRecipe | ApiRecipe;
+export type Recipe = LocalRecipe | ApiRecipe;
 
 const App: React.FC = () => {
   const [myRecipes, setMyRecipes] = useState<LocalRecipe[]>([]); // stores user-added recipes
