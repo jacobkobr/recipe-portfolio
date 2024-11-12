@@ -1,8 +1,11 @@
-# Recipe Portfolio
+# Recipe Lab
 
 React-based app that allows users to input recipe details along with a picture which is locally saved for future viewing. 
 
-**Try it out!** [Recipe App on Netlify](https://recipeportfolio.netlify.app/)
+- Implemented Spoonacular API to fetch recipes based on ingredients on hand
+- Implemented local storage to save recipes for future viewing
+
+**Try it out!** [Recipe Lab on Netlify](https://recipeportfolio.netlify.app/)
 
 ## Technologies Used
 
@@ -10,6 +13,7 @@ React-based app that allows users to input recipe details along with a picture w
 - TypeScript
 - Tailwind CSS
 - Netlify
+- Spoonacular API
 
 
 License
