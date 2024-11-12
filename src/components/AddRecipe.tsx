@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+// Type definition for a Recipe
 interface Recipe {
     title: string;
     ingredients: string;
@@ -7,33 +8,37 @@ interface Recipe {
     image: string | null;
 }
 
+// Props for AddRecipe component
 interface AddRecipeProps {
-    onAddRecipe: (recipe: Recipe) => void;
+    onAddRecipe: (recipe: Recipe) => void; // Callback to pass new recipe to parent
 }
 
+// Component to add a new recipe
 const AddRecipe: React.FC<AddRecipeProps> = ({ onAddRecipe }) => {
-    const [title, setTitle] = useState('');
-    const [ingredients, setIngredients] = useState('');
-    const [instructions, setInstructions] = useState('');
-    const [image, setImage] = useState<string | null>(null);
+    const [title, setTitle] = useState(''); // state for recipe title
+    const [ingredients, setIngredients] = useState(''); // state for ingredients list
+    const [instructions, setInstructions] = useState(''); // state for instructions
+    const [image, setImage] = useState<string | null>(null); // state for optional image
 
+    // Handles form submission for new recipe
     const handleFormSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (title && ingredients && instructions) {
-            onAddRecipe({ title, ingredients, instructions, image });
-            setTitle('');
-            setIngredients('');
-            setInstructions('');
-            setImage(null);
+        e.preventDefault(); // prevent page reload on submit
+        if (title && ingredients && instructions) { // ensure required fields are filled
+            onAddRecipe({ title, ingredients, instructions, image }); // pass recipe to parent component
+            setTitle(''); // reset title field
+            setIngredients(''); // reset ingredients field
+            setInstructions(''); // reset instructions field
+            setImage(null); // reset image
         }
     };
 
+    // Handles image upload and sets it in state
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
+        const file = e.target.files?.[0]; // get selected file
         if (file) {
             const reader = new FileReader();
-            reader.onloadend = () => setImage(reader.result as string);
-            reader.readAsDataURL(file);
+            reader.onloadend = () => setImage(reader.result as string); // set image to Base64 string
+            reader.readAsDataURL(file); // read file as Data URL
         }
     };
 
@@ -44,7 +49,7 @@ const AddRecipe: React.FC<AddRecipeProps> = ({ onAddRecipe }) => {
                 <input
                     type="text"
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => setTitle(e.target.value)} // update title state
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                     placeholder="Recipe title"
                     required
@@ -54,7 +59,7 @@ const AddRecipe: React.FC<AddRecipeProps> = ({ onAddRecipe }) => {
                 <label className="block text-gray-700 font-semibold">Ingredients:</label>
                 <textarea
                     value={ingredients}
-                    onChange={(e) => setIngredients(e.target.value)}
+                    onChange={(e) => setIngredients(e.target.value)} // update ingredients state
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                     placeholder="List ingredients"
                     required
@@ -64,7 +69,7 @@ const AddRecipe: React.FC<AddRecipeProps> = ({ onAddRecipe }) => {
                 <label className="block text-gray-700 font-semibold">Instructions:</label>
                 <textarea
                     value={instructions}
-                    onChange={(e) => setInstructions(e.target.value)}
+                    onChange={(e) => setInstructions(e.target.value)} // update instructions state
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                     placeholder="Cooking instructions"
                     required
@@ -75,13 +80,13 @@ const AddRecipe: React.FC<AddRecipeProps> = ({ onAddRecipe }) => {
                 <input
                     type="file"
                     accept="image/*"
-                    onChange={handleImageUpload}
+                    onChange={handleImageUpload} // handle image upload
                     className="mt-2"
                 />
             </div>
             <button
                 type="submit"
-                className="w-full py-2 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition duration-300"
+                className="w-full py-2 font-semibold text-black border rounded border-gray-500 hover:bg-blue-600 transition duration-300" style={{ backgroundColor: '#ADACAC' }}
             >
                 Add Recipe
             </button>
